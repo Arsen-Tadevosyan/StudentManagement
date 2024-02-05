@@ -5,13 +5,14 @@
     <title>Add lesson</title>
 </head>
 <body>
+<th:block th:include="/fragment/headerFragment::userInfo"/>
 add lesson <br>
 <form action="/lessons/add" method="post">
     title: <input type="text" name="title"><br>
     duration : <input type="date" name="duration"><br>
     price: <input type="number" name="price"><br>
     start_date: <input type="date" name="startDate"><br>
-    <input type="hidden" th:value="null" name="teacher_id">
+    <input type="hidden" name="teacher" th:value="${currentUser.id}">
     <input type="submit" value="add">
 </form>
 </body>

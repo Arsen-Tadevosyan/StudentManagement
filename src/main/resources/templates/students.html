@@ -5,7 +5,8 @@
     <title>Students</title>
 </head>
 <body>
-Add Student | <a href="/students/add">add</a>
+<th:block th:include="/fragment/headerFragment::userInfo"/>
+
 <table>
     <thead>
     <tr>
@@ -30,8 +31,10 @@ Add Student | <a href="/students/add">add</a>
         <td th:text="${student.email}"></td>
         <td th:text="${student.lesson.title}"></td>
 
-        <td><a th:href="@{'/students/update/'+ ${student.id}}">update</a></td>
-        <td><a th:href="@{'/students/delete/'+ ${student.id}}">delete</a></td>
+        <td><a th:if="${ currentUser.userType.name() == 'TEACHER'}" th:href="@{'/students/update/'+ ${student.id}}">update</a>
+        </td>
+        <td><a th:if="${ currentUser.userType.name() == 'TEACHER'}" th:href="@{'/students/delete/'+ ${student.id}}">delete</a>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -12,7 +12,7 @@ update lesson <br>
     duration : <input type="date" name="duration" th:value="${lesson.duration}"><br>
     price: <input type="number" name="price" th:value="${lesson.price}"><br>
     start_date: <input type="date" name="startDate" th:value="${lesson.startDate}"><br>
-    <input type="hidden" th:value="null" name="teacher_id">
+    <input type="hidden" th:value="${currentUser.id}" name="teacher">
     <input type="submit" value="update">
 </form>
 </body>

@@ -2,11 +2,16 @@ package com.example.studentmanagement.controller;
 
 
 import com.example.studentmanagement.entity.Lesson;
+import com.example.studentmanagement.entity.User;
+import com.example.studentmanagement.enums.UserType;
 import com.example.studentmanagement.repository.LessonRepository;
+import com.example.studentmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class LessonController {
@@ -14,6 +19,9 @@ public class LessonController {
 
     @Autowired
     private LessonRepository lessonRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/lessons")
     public String LessonPage(ModelMap modelMap) {
@@ -23,6 +31,7 @@ public class LessonController {
 
     @GetMapping("/lessons/add")
     public String addLessonsPage(ModelMap modelMap) {
+        modelMap.addAttribute("teachers",   userRepository.findByUserType(  UserType.TEACHER));
         return "addLesson";
     }
 

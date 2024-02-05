@@ -7,6 +7,7 @@ import com.example.studentmanagement.repository.LessonRepository;
 import com.example.studentmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ public class StudentController {
     @Value("${picture.upload.directory}")
     private String uploadDirectory;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -36,7 +39,10 @@ public class StudentController {
     }
 
     @GetMapping("/students/add")
-    public String addStudentsPage(ModelMap modelMap) {
+    public String addStudentsPage(@RequestParam(value = "msg", required = false) String msg, ModelMap modelMap) {
+        if (msg!=null){
+            modelMap.addAttribute("msg",msg);
+        }
         modelMap.addAttribute("lessons", lessonRepository.findAll());
         return "addStudents";
     }
@@ -49,10 +55,15 @@ public class StudentController {
             File file = new File(uploadDirectory, picName);
             multipartFile.transferTo(file);
             user.setPicName(picName);
-            userRepository.save(user);
-
         }
-        return "redirect:/students";
+        Optional<User> byEmail = userRepository.findByEmail(user.getEmail());
+        if (byEmail.isEmpty()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return "redirect:/students/add?msg=student registered";
+        } else {
+            return "redirect:/students/add?msg=email already is use";
+        }
     }
 
     @GetMapping("/students/delete/{id}")

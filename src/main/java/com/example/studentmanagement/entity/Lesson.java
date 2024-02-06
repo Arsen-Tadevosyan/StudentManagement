@@ -11,6 +11,7 @@ import java.sql.Date;
 public class Lesson {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;

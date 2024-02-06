@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>my Massages</title>
+</head>
+<body>
+<th:block th:include="/fragment/headerFragment::userInfo"/>
+<table>
+    <thead>
+    <tr>
+        <th>Massages</th>
+        <th>date</th>
+        <th>from</th>
+
+    </tr>
+    </thead>
+    <tbody>
+  <tr th:each="massage:${massages}">
+      <td th:text="${massage.massage}"></td>
+      <td th:text="${massage.dateTime}"></td>
+      <td th:text="${massage.from.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

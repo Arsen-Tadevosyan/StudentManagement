@@ -31,8 +31,8 @@
         <td>
             <span th:if="${teacher.lesson != null}" th:text="${teacher.lesson.title}"></span>
         </td>
-<!--        <td><a  th:href="@{'/teachers/update/'+ ${teacher.id}}">update</a></td>-->
-<!--        <td><a th:href="@{'/teachers/delete/'+ ${teacher.id}}">delete</a></td>-->
+        <td><a  th:href="@{'/teachers/update/'+ ${teacher.id}}">update</a></td>
+        <td><a th:href="@{'/teachers/delete/'+ ${teacher.id}}">delete</a></td>
     </tr>
     </tbody>
 </table>

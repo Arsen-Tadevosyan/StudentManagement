@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sendMassage</title>
+</head>
+<body>
+<th:block th:include="/fragment/headerFragment::userInfo"/>
+<form action="/sendMassage/forward" method="post">
+    <input type="hidden" th:value="${toId}" name="to">
+    <input type="hidden" th:value="${currentUser.getId()}" name="from">
+    <input type="hidden" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}" name="dateTime">
+    <input type="text"  name="Massage">
+    <input type="submit" value="send">
+</form>
+</body>
+</html>

@@ -18,6 +18,7 @@
         <th>lesson name</th>
         <th>update</th>
         <th>delete</th>
+        <th>send Massage</th>
     </tr>
     </thead>
     <tbody>
@@ -31,9 +32,14 @@
         <td th:text="${student.email}"></td>
         <td th:text="${student.lesson.title}"></td>
 
-        <td><a th:if="${ currentUser.userType.name() == 'TEACHER'}" th:href="@{'/students/update/'+ ${student.id}}">update</a>
+        <td><a th:if="${ currentUser != null && currentUser.userType.name() == 'TEACHER'}"
+               th:href="@{'/students/update/'+ ${student.id}}">update</a>
         </td>
-        <td><a th:if="${ currentUser.userType.name() == 'TEACHER'}" th:href="@{'/students/delete/'+ ${student.id}}">delete</a>
+        <td><a th:if="${ currentUser != null && currentUser.userType.name() == 'TEACHER'}"
+               th:href="@{'/students/delete/'+ ${student.id}}">delete</a>
+        </td>
+        <td><a th:if="${ currentUser != null && currentUser.userType.name() == 'STUDENT'}"
+               th:href="@{'/sendMassage/'+ ${student.id}}">massage</a>
         </td>
     </tr>
     </tbody>

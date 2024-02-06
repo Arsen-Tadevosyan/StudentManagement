@@ -10,6 +10,10 @@
     <div th:if="${currentUser != null}">
         Welcome <span th:text="${currentUser.name}"></span> | <a href="/logout"> Logout </a> <br>
         <a href="/">menu</a><br>
+        <form action="/myMassage">
+            <input type="hidden" th:value="${currentUser.getId()}" name="Id">
+            <input type="submit" value="massage">
+        </form>
     </div>
 </div>
 

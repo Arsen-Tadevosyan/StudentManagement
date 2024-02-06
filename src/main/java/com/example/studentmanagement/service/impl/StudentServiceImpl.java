@@ -2,6 +2,7 @@ package com.example.studentmanagement.service.impl;
 
 import com.example.studentmanagement.entity.User;
 import com.example.studentmanagement.enums.UserType;
+import com.example.studentmanagement.repository.MassageRepository;
 import com.example.studentmanagement.repository.UserRepository;
 import com.example.studentmanagement.service.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +67,7 @@ public class StudentServiceImpl implements StudentService {
             multipartFile.transferTo(file);
             user.setPicName(picName);
         } else {
-            Optional<User> fromDB =findById(user.getId());
+            Optional<User> fromDB = findById(user.getId());
             user.setPicName(fromDB.get().getPicName());
         }
         return null;

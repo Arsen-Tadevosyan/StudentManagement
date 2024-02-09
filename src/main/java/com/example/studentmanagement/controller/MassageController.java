@@ -1,8 +1,6 @@
 package com.example.studentmanagement.controller;
 
 import com.example.studentmanagement.entity.Massage;
-import com.example.studentmanagement.entity.User;
-import com.example.studentmanagement.repository.MassageRepository;
 import com.example.studentmanagement.service.MassageService;
 import com.example.studentmanagement.service.StudentService;
 import lombok.RequiredArgsConstructor;

@@ -25,6 +25,6 @@ public class Massage {
     private User to;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-   private Date dateTime;
+    private Date dateTime;
 
 }

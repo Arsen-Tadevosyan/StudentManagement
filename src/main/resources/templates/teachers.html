@@ -16,7 +16,6 @@
         <th>email</th>
         <th>lesson name</th>
         <th>update</th>
-        <th>delete</th>
     </tr>
     </thead>
     <tbody>
@@ -31,8 +30,7 @@
         <td>
             <span th:if="${teacher.lesson != null}" th:text="${teacher.lesson.title}"></span>
         </td>
-        <td><a  th:href="@{'/teachers/update/'+ ${teacher.id}}">update</a></td>
-        <td><a th:href="@{'/teachers/delete/'+ ${teacher.id}}">delete</a></td>
+        <td><a th:if="${currentUser.getId==teacher.id}" th:href="@{'/teachers/update/'+ ${teacher.id}}">update</a></td>
     </tr>
     </tbody>
 </table>

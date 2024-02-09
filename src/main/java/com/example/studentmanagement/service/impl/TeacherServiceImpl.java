@@ -70,6 +70,7 @@ public class TeacherServiceImpl implements TeacherService {
             Optional<User> fromDB = findById(user.getId());
             user.setPicName(fromDB.get().getPicName());
         }
+        userRepository.save(user);
         return null;
     }
 
